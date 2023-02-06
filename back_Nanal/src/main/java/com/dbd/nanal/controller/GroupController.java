@@ -246,7 +246,7 @@ public class GroupController {
                     "[Front] \n" +
                     "{groupIdx(int)} \n\n" +
                     "[Back] \n" +
-                    "groupUserList : [{userIdx(int), nickName(String), img(String)] ")
+                    "groupUserList : [{userIdx(int), nickname(String), img(String)] ")
     @GetMapping("user/{groupIdx}")
     public ResponseEntity<?> getGroupUserList(@ApiParam(value = "유저 idx", required = true) @AuthenticationPrincipal UserEntity userInfo, @ApiParam(value = "그룹 idx", required = true) @PathVariable int groupIdx) {
         System.out.println("[그룹 유저 리스트] 유저 : idx " + userInfo.getUserIdx() + " name " + userInfo.getUsername());

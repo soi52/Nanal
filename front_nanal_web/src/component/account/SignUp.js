@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
 import axios_api from '../../config/Axios';
-import nanal from '../../src_assets/img/나날2.png';
+import nanal from '../../src_assets/img/나날1.jpeg';
 
 function SignUp() {
   // 기본 형식 설명

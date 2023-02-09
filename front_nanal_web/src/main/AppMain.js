@@ -5,6 +5,7 @@ import SignIn from '../component/account/SignIn';
 import SignUp from '../component/account/SignUp';
 import FindId from '../component/account/FindId';
 import FindPw from '../component/account/FindPw';
+import DiaryDetail from '../component/diary/DiaryDetail';
 
 const AppMain = () => {
   return (
@@ -14,6 +15,7 @@ const AppMain = () => {
       <Route path='/signup' element={<SignUp />}></Route>
       <Route path='/findid' element={<FindId />}></Route>
       <Route path='/findpw' element={<FindPw />}></Route>
+      <Route path='/diary/detail' element={<DiaryDetail />}></Route>
       <Route path='*' element={<NotFound />}></Route>
     </Routes>
   );

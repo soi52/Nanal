@@ -4,7 +4,7 @@ import Swal from 'sweetalert2';
 import axios_api from '../../config/Axios';
 import { onLogin } from '../../config/Login';
 // import CommentList from './CommentList';
-import emo_joy from '../../src_assets/img/emo_joy.png';
+import emo_joy from '../../src_assets/img/emotion/emo_joy.png';
 import bookmark from '../../src_assets/img/bookmark.png';
 import bookmark_filled from '../../src_assets/img/bookmark_fill.png';
 

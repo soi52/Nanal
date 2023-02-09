@@ -5,9 +5,7 @@ module.exports = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        'sketch-book': 'src/src_assets/img/diaryImg.svg',
-      }
+
     },
   },
   plugins: [],

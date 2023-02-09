@@ -1,4 +1,5 @@
-import diaryImg from '../src_assets/img/diaryImg.svg'
+import nmr from '../src_assets/img/name-mark-red.svg'
+import diaryImgRed from '../src_assets/img/diary-home-img.svg'
 import Calendar from 'react-calendar';
 import React, { useState } from 'react';
 import '../src_assets/css/Calendar.css';
@@ -19,12 +20,12 @@ const toStringByFormatting = (value, delimeter = '-') => {
   return [year, month, date].join(delimeter);
 };
 
-const Home = () => {
+const MyDiary = () => {
   
   const [value, onChange] = useState(new Date());
 
-  return <div className="relative">
-    <div className='border-none absolute inset-y-60 left-28'>
+  return <div className="relative w-[1440px] mx-auto">
+    <div className='border-none absolute inset-y-52 left-60 z-10'>
         <Calendar
           onChange={onChange}
           value={value}
@@ -33,9 +34,14 @@ const Home = () => {
             date.toLocaleString('en', { day: 'numeric' })
           }
         />
-      </div>
-    <img src={diaryImg} className='min-w-[1536px] origin-center '/>
+    </div>
+    <p className="absolute z-20 left-[330px] inset-y-28">내 일기</p>
+    <img src={nmr} className='absolute z-10 left-60 inset-y-20'/>
+    <img src={diaryImgRed} className='absolute w-[1440px] z-0' />
+    <div>
+      
+    </div>
   </div>
 }
 
-export default Home
+export default MyDiary

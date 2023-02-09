@@ -4,7 +4,11 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        'sketch-book': 'src/src_assets/img/diaryImg.svg',
+      }
+    },
   },
   plugins: [],
 }

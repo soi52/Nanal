@@ -1,5 +1,5 @@
-import nmr from '../src_assets/img/name-mark-red.svg'
-import diaryImgRed from '../src_assets/img/diary-home-img.svg'
+import nmr from '../src_assets/img/bookmark-name/name-mark-red.svg'
+import diaryImgRed from '../src_assets/img/diary-img-red.svg'
 import Calendar from 'react-calendar';
 import React, { useState } from 'react';
 import '../src_assets/css/Calendar.css';
@@ -25,7 +25,7 @@ const MyDiary = () => {
   const [value, onChange] = useState(new Date());
 
   return <div className="relative w-[1440px] mx-auto">
-    <div className='border-none absolute inset-y-52 left-60 z-10'>
+    <div className='border-none absolute inset-y-52 left-60 z-20'>
         <Calendar
           onChange={onChange}
           value={value}
@@ -35,9 +35,9 @@ const MyDiary = () => {
           }
         />
     </div>
-    <p className="absolute z-20 left-[330px] inset-y-28">내 일기</p>
-    <img src={nmr} className='absolute z-10 left-60 inset-y-20'/>
-    <img src={diaryImgRed} className='absolute w-[1440px] z-0' />
+    <p className="absolute z-30 left-[330px] inset-y-28">내 일기</p>
+    <img src={nmr} className='absolute z-20 left-60 inset-y-20'/>
+    <img src={diaryImgRed} className='absolute w-[1440px] z-10' />
     <div>
       
     </div>

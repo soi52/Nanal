@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import emo_joy from '../../src_assets/img/emo_joy.png';
+import emo_joy from '../../src_assets/img/emotion/emo_joy.png';
 
 function DiaryItem({
   isToggle,

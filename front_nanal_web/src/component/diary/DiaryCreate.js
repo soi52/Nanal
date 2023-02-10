@@ -21,6 +21,13 @@ function DiaryCreate({ curDate }) {
 
   // 작성완료 버튼 누르면 실행되는 함수 - axios 사용해서 백s엔드와 통신
   const handleSubmit = (e) => {
+    console.log({
+      // 날짜 데이터도 전달하기
+      diaryDate: date,
+      // 선택한 그룹은 배열 형태로 전달해야 함
+      groupIdxList: checkedList,
+      content: content,
+    });
     e.preventDefault();
     // 유효성 검사 후 포커싱
     if (content.length < 2) {
@@ -36,18 +43,26 @@ function DiaryCreate({ curDate }) {
         groupIdxList: checkedList,
         content: content,
       })
-      .then((response) => {
-        Swal.fire({
-          icon: 'success', // Alert 타입
-          title: '일기 저장 완료', // Alert 제목
-          text: '작성하신 일기가 작성 완료됐습니다.', // Alert 내용
-        });
-        // alert('저장 성공');
-        // 일기 생성 후 홈으로 보내기
-        navigate('/', { replace: true });
+      .then(({ data }) => {
+        if (data.statusCode === 200) {
+          if (data.data.responseMessage === '일기 생성 성공') {
+            Swal.fire({
+              icon: 'success', // Alert 타입
+              title: '일기 저장 완료', // Alert 제목
+              text: '작성하신 일기가 작성 완료됐습니다.', // Alert 내용
+            });
+            // alert('저장 성공');
+            // 일기 생성 후 홈으로 보내기
+            navigate('/', { replace: true });
+          }
+        } else {
+          console.log('일기 생성 오류: ');
+          console.log(data.statusCode);
+          console.log(data.data.responseMessage);
+        }
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(({ error }) => {
+        console.log('일기 생성 오류: ', error);
       });
 
     // 저장 후 일기 데이터 초기화
@@ -70,10 +85,11 @@ function DiaryCreate({ curDate }) {
   const navigate = useNavigate();
   // 그룹 리스트 데이터 가져오기
   const [groupList, setGroupList] = useState([]);
+
   useEffect(() => {
-    // onLogin();
+    onLogin();
     axios_api
-      .get('group/list')
+      .get('group/list/0')
       .then(({ data }) => {
         if (data.statusCode === 200) {
           setGroupList(null);
@@ -81,6 +97,7 @@ function DiaryCreate({ curDate }) {
             setGroupList(data.data.groupList);
           }
         } else {
+          console.log('그룹 리스트 불러오기 오류: ');
           console.log(data.statusCode);
           console.log(data.data.responseMessage);
         }
@@ -96,7 +113,7 @@ function DiaryCreate({ curDate }) {
   return (
     <div>
       <form className='h-auto min-h-full pb-5'>
-        <h2 className='my-5 text-xl font-bold text-center'>일기 작성</h2>
+        <h2 className='my-5 text-2xl font-bold text-center'>일기 작성</h2>
         {/* 날짜 선택란 */}
         <div>
           <input
@@ -187,12 +204,13 @@ function DiaryCreate({ curDate }) {
         {/* 작성 취소 및 완료 버튼 */}
         <footer className='relative flex justify-between px-1 pb-5 translate-y-full'>
           <input
-            className='hover:bg-slate-300 bg-slate-300/50 rounded-xl px-2.5 py-1 block'
+            className='hover:bg-slate-300 bg-slate-300/50 rounded-xl px-2.5 py-1 block font-bold cursor-pointer'
             type='reset'
             onClick={resetData}
+            value='초기화'
           />
           <button
-            className='hover:bg-sky-700 bg-cyan-600 text-white px-2.5 py-1 rounded-xl block'
+            className='hover:bg-sky-700 bg-cyan-600 text-white px-2.5 py-1 rounded-xl block font-bold'
             onClick={handleSubmit}
           >
             작성 완료

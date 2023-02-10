@@ -21,7 +21,7 @@ function DiaryList({ isToggle, curDate, groupIdx }) {
   const [diaryList, setDiaryList] = useState([]);
 
   useEffect(() => {
-    // onLogin();
+    onLogin();
     axios_api
       .get(arrAxios[isToggle])
       .then(({ data }) => {
@@ -29,6 +29,7 @@ function DiaryList({ isToggle, curDate, groupIdx }) {
           // 초기화 필요!
           setDiaryList(null);
           if (data.data.responseMessage === '일기 리스트 조회 성공') {
+            console.log(data.data.diary);
             setDiaryList(data.data.diary);
           }
         } else {
@@ -45,17 +46,17 @@ function DiaryList({ isToggle, curDate, groupIdx }) {
   return (
     <div className='DiaryList'>
       {isToggle === 0 ? (
-        <h4 className='font-bold text-center'>
+        <p className='font-bold text-center text-2xl'>
           {diaryList.length}개의 일기가 있습니다.
-        </h4>
+        </p>
       ) : isToggle === 1 ? (
-        <h4 className='my-5 font-bold text-center'>
+        <p className='my-5 font-bold text-center text-2xl'>
           내가 쓴 일기 개수는 총 {diaryList.length}개 입니다.
-        </h4>
+        </p>
       ) : (
         <></>
       )}
-      <div>
+      <div className='my-5'>
         {diaryList.map((diary) => (
           <DiaryItem
             key={diary.diaryIdx}

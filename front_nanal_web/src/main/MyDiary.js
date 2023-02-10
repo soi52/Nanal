@@ -1,5 +1,5 @@
-import nmr from '../src_assets/img/bookmark-name/name-mark-red.svg'
-import diaryImgRed from '../src_assets/img/diary-img-red.svg'
+import nmr from '../src_assets/img/bookmark-name/name-mark-red.svg';
+import diaryImgRed from '../src_assets/img/diary-img-red.svg';
 import Calendar from 'react-calendar';
 import React, { useState } from 'react';
 import DiaryCreate from '../component/diary/DiaryCreate';
@@ -25,8 +25,9 @@ const curDate = toStringByFormatting(new Date());
 const MyDiary = () => {
   const [value, onChange] = useState(new Date());
 
-  return <div className="relative w-[1440px] mx-auto">
-    <div className='border-none absolute inset-y-52 left-60 z-20'>
+  return (
+    <div className='relative w-[1440px] mx-auto'>
+      <div className='border-none absolute inset-y-52 left-60 z-20'>
         <Calendar
           onChange={onChange}
           value={value}
@@ -36,16 +37,17 @@ const MyDiary = () => {
           }
         />
       </div>
-      <p className="absolute z-30 left-[330px] inset-y-28">내 일기</p>
-      <img src={nmr} className='absolute z-20 left-60 inset-y-20'/>
+      <p className='absolute z-30 left-[330px] inset-y-28'>내 일기</p>
+      <img src={nmr} className='absolute z-20 left-60 inset-y-20' />
       <img src={diaryImgRed} className='absolute w-[1440px] z-10' />
       <div className='absolute z-20 w-1/3 inset-y-16 right-48'>
-        <DiaryCreate curDate={curDate} />
+        {/* <DiaryCreate curDate={curDate} /> */}
       </div>
-      <div>
-        <DiaryList />
+      <div className='absolute z-20 w-1/3 inset-y-16 right-48'>
+        <DiaryList isToggle={0} curDate={curDate} />
       </div>
-  </div>
-}
+    </div>
+  );
+};
 
 export default MyDiary;
